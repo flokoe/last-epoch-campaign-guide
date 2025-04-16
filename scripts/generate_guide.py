@@ -23,43 +23,67 @@ def generate_html(data):
     <title>{data['campaign']['name']}</title>
     <style>
         body {{
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f5f5f5;
+            background-color: #121212;
+            color: #e0e0e0;
         }}
         h1, h2, h3 {{
-            color: #333;
+            color: #bb9b62;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }}
+        h1 {{
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            text-shadow: 0 0 10px rgba(187, 155, 98, 0.4);
+        }}
+        .description {{
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 30px;
+            color: #a0a0a0;
         }}
         .chapter {{
             margin-bottom: 30px;
-            background-color: #fff;
+            background-color: #1e1e1e;
             border-radius: 5px;
             padding: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
         }}
         .chapter-header {{
             display: flex;
             align-items: center;
             cursor: pointer;
             user-select: none;
+            padding: 5px;
+            border-radius: 3px;
+            transition: background-color 0.2s;
         }}
         .chapter-header h2 {{
             margin: 0;
             flex-grow: 1;
+            font-size: 1.4rem;
         }}
         .chapter-content {{
             display: block;
             padding-top: 15px;
+            border-top: 1px solid #333;
+            margin-top: 10px;
         }}
         .chapter-content.collapsed {{
             display: none;
         }}
         .collapse-icon {{
-            font-size: 24px;
+            font-size: 18px;
             margin-right: 10px;
+            color: #bb9b62;
         }}
         .collapse-icon:after {{
             content: "▼";
@@ -69,9 +93,10 @@ def generate_html(data):
         }}
         .zone {{
             margin-bottom: 20px;
-            padding: 10px;
-            border-left: 3px solid #2c3e50;
-            background-color: #f9f9f9;
+            padding: 12px;
+            border-left: 3px solid #bb9b62;
+            background-color: #262626;
+            border-radius: 3px;
         }}
         .zone-header {{
             display: flex;
@@ -80,33 +105,69 @@ def generate_html(data):
         .zone-name {{
             margin: 0;
             flex-grow: 1;
+            font-size: 1.2rem;
         }}
         .zone.completed {{
-            opacity: 0.6;
-            background-color: #e7e7e7;
-            border-left-color: #7f8c8d;
+            opacity: 0.7;
+            background-color: #2a2a2a;
+            border-left-color: #5a5a5a;
+        }}
+        .zone.completed h3 {{
+            color: #8a8a8a;
+            text-decoration: line-through;
         }}
         .tips {{
-            margin-top: 10px;
+            margin-top: 12px;
+            padding-left: 20px;
+            border-top: 1px dotted #444;
+            padding-top: 10px;
+        }}
+        .tips-title {{
+            color: #bb9b62;
+            font-weight: 600;
+        }}
+        .tips ul {{
             padding-left: 20px;
         }}
         .tips li {{
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            color: #c0c0c0;
         }}
         input[type="checkbox"] {{
             transform: scale(1.3);
             margin-right: 10px;
+            accent-color: #bb9b62;
+            cursor: pointer;
         }}
         .zone-description {{
             font-style: italic;
-            color: #555;
-            margin: 5px 0 10px 0;
+            color: #a0a0a0;
+            margin: 8px 0 12px 0;
+        }}
+        
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {{
+            body {{
+                padding: 12px;
+            }}
+            h1 {{
+                font-size: 1.8rem;
+            }}
+            .chapter-header h2 {{
+                font-size: 1.2rem;
+            }}
+            .zone-name {{
+                font-size: 1.1rem;
+            }}
+            .tips ul {{
+                padding-left: 15px;
+            }}
         }}
     </style>
 </head>
 <body>
     <h1>{data['campaign']['name']}</h1>
-    <p>{data['campaign']['description']}</p>
+    <p class="description">{data['campaign']['description']}</p>
     
     <div id="campaign-content">
 """
@@ -134,7 +195,7 @@ def generate_html(data):
                     </div>
                     <p class="zone-description">{zone['description']}</p>
                     <div class="tips">
-                        <strong>Tips:</strong>
+                        <span class="tips-title">Tips:</span>
                         <ul>
 """
             

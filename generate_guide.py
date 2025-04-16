@@ -3,6 +3,7 @@
 import yaml
 import os
 import sys
+import shutil
 from jinja2 import Environment, FileSystemLoader
 from typing import Dict, Any
 
@@ -16,9 +17,8 @@ def load_campaign_data(yaml_file: str) -> Dict[str, Any]:
             sys.exit(1)
 
 def generate_html(data: Dict[str, Any]) -> str:
-    # Set up Jinja2 environment
-    template_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'templates')
-    env = Environment(loader=FileSystemLoader(template_dir))
+    # Set up Jinja2 environment using the current directory
+    env = Environment(loader=FileSystemLoader('.'))
     template = env.get_template('campaign_guide.html')
     
     # Render the template with our data
@@ -26,29 +26,36 @@ def generate_html(data: Dict[str, Any]) -> str:
 
 def main():
     # Get the base directory (project root)
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    base_dir = os.path.dirname(os.path.abspath(__file__))
     
-    # Check if the data directory exists
-    data_dir = os.path.join(base_dir, 'data')
-    if not os.path.isdir(data_dir):
-        print("Error: data directory not found")
+    # Check if the data file exists
+    yaml_file = os.path.join(base_dir, 'campaign_guide.yaml')
+    if not os.path.isfile(yaml_file):
+        print(f"Error: campaign data file not found at {yaml_file}")
         sys.exit(1)
     
     # Load the campaign data
-    yaml_file = os.path.join(data_dir, 'campaign_guide.yaml')
     data = load_campaign_data(yaml_file)
     
     # Generate HTML
     html = generate_html(data)
     
     # Create output directory if it doesn't exist
-    static_dir = os.path.join(base_dir, 'static')
-    os.makedirs(static_dir, exist_ok=True)
+    public_dir = os.path.join(base_dir, 'public')
+    os.makedirs(public_dir, exist_ok=True)
     
     # Write HTML to file
-    output_file = os.path.join(static_dir, 'index.html')
+    output_file = os.path.join(public_dir, 'index.html')
     with open(output_file, 'w') as file:
         file.write(html)
+    
+    # Copy static files to public directory
+    static_files = ['style.css', 'script.js']
+    for file in static_files:
+        source_file = os.path.join(base_dir, file)
+        if os.path.isfile(source_file):
+            shutil.copy2(source_file, os.path.join(public_dir, file))
+            print(f"File copied to: {os.path.join(public_dir, file)}")
     
     print(f"HTML guide generated at: {output_file}")
 

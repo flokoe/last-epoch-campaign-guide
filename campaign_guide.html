@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ campaign.name }}</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>{{ campaign.name }}</h1>
+    <p class="description">{{ campaign.description }}</p>
+    
+    <div id="campaign-content">
+        {% for chapter in campaign.chapters %}
+        {% set chapter_index = loop.index %}
+        {% set chapter_id = "chapter-" ~ chapter_index %}
+        <div class="chapter" id="{{ chapter_id }}">
+            <div class="chapter-header" data-target="{{ chapter_id }}-content">
+                <span class="collapse-icon"></span>
+                <h2>{{ chapter.name }}</h2>
+            </div>
+            <div class="chapter-content" id="{{ chapter_id }}-content">
+                {% for zone in chapter.zones %}
+                {% set zone_id = "zone-" ~ chapter_index ~ "-" ~ loop.index %}
+                <div class="zone" id="{{ zone_id }}">
+                    <div class="zone-header">
+                        <input type="checkbox" class="zone-checkbox" data-zone-id="{{ zone_id }}">
+                        <h3 class="zone-name">{{ zone.name }}</h3>
+                    </div>
+                    <p class="zone-description">{{ zone.description }}</p>
+                    <div class="tips">
+                        <span class="tips-title">Tips:</span>
+                        <ul>
+                            {% for tip in zone.tips %}
+                            <li>{{ tip }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

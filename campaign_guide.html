@@ -14,18 +14,18 @@
         {% for chapter in campaign.chapters %}
         {% set chapter_index = loop.index %}
         {% set chapter_id = "chapter-" ~ chapter_index %}
-        <div class="chapter" id="{{ chapter_id }}">
-            <div class="chapter-header" data-target="{{ chapter_id }}-content">
+        <details class="chapter" id="{{ chapter_id }}" open>
+            <summary class="chapter-header">
                 <span class="collapse-icon"></span>
                 <h2>{{ chapter.name }}</h2>
-            </div>
-            <div class="chapter-content" id="{{ chapter_id }}-content">
+            </summary>
+            <div class="chapter-content">
                 {% for zone in chapter.zones %}
                 {% set zone_id = "zone-" ~ chapter_index ~ "-" ~ loop.index %}
                 <div class="zone" id="{{ zone_id }}">
                     <div class="zone-header">
-                        <input type="checkbox" class="zone-checkbox" data-zone-id="{{ zone_id }}">
-                        <h3 class="zone-name">{{ zone.name }}</h3>
+                        <input type="checkbox" class="zone-checkbox" id="checkbox-{{ zone_id }}" data-zone-id="{{ zone_id }}">
+                        <label for="checkbox-{{ zone_id }}" class="zone-name">{{ zone.name }}</label>
                     </div>
                     <p class="zone-description">{{ zone.description }}</p>
                     <div class="tips">
@@ -39,7 +39,7 @@
                 </div>
                 {% endfor %}
             </div>
-        </div>
+        </details>
         {% endfor %}
     </div>
 

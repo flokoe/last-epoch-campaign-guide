@@ -1,36 +1,21 @@
 // Load saved state on page load
 document.addEventListener('DOMContentLoaded', function() {
     loadCheckboxState();
-    loadCollapseState();
+    loadDetailsState();
     
     // Add event listeners to all checkboxes
     const checkboxes = document.querySelectorAll('.zone-checkbox');
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', function() {
-            const zoneId = this.getAttribute('data-zone-id');
-            const zoneElement = document.getElementById(zoneId);
-            
-            if (this.checked) {
-                zoneElement.classList.add('completed');
-            } else {
-                zoneElement.classList.remove('completed');
-            }
-            
             saveCheckboxState();
         });
     });
     
-    // Add event listeners to chapter headers for collapsible functionality
-    const chapterHeaders = document.querySelectorAll('.chapter-header');
-    chapterHeaders.forEach(header => {
-        header.addEventListener('click', function() {
-            const contentId = this.getAttribute('data-target');
-            const contentElement = document.getElementById(contentId);
-            
-            this.classList.toggle('collapsed');
-            contentElement.classList.toggle('collapsed');
-            
-            saveCollapseState();
+    // Add event listeners to details elements for persistence
+    const chapters = document.querySelectorAll('details.chapter');
+    chapters.forEach(details => {
+        details.addEventListener('toggle', function() {
+            saveDetailsState();
         });
     });
 });
@@ -57,43 +42,37 @@ function loadCheckboxState() {
         
         for (const zoneId in state) {
             const checkbox = document.querySelector(`.zone-checkbox[data-zone-id="${zoneId}"]`);
-            const zoneElement = document.getElementById(zoneId);
-            
             if (checkbox && state[zoneId]) {
                 checkbox.checked = true;
-                zoneElement.classList.add('completed');
             }
         }
     }
 }
 
-// Save collapse state to localStorage
-function saveCollapseState() {
-    const chapterHeaders = document.querySelectorAll('.chapter-header');
+// Save details open/closed state to localStorage
+function saveDetailsState() {
+    const chapters = document.querySelectorAll('details.chapter');
     const state = {};
     
-    chapterHeaders.forEach(header => {
-        const contentId = header.getAttribute('data-target');
-        state[contentId] = header.classList.contains('collapsed');
+    chapters.forEach(details => {
+        const chapterId = details.id;
+        state[chapterId] = details.open;
     });
     
-    localStorage.setItem('leGuideCollapseState', JSON.stringify(state));
+    localStorage.setItem('leGuideDetailsState', JSON.stringify(state));
 }
 
-// Load collapse state from localStorage
-function loadCollapseState() {
-    const savedState = localStorage.getItem('leGuideCollapseState');
+// Load details open/closed state from localStorage
+function loadDetailsState() {
+    const savedState = localStorage.getItem('leGuideDetailsState');
     
     if (savedState) {
         const state = JSON.parse(savedState);
         
-        for (const contentId in state) {
-            const header = document.querySelector(`.chapter-header[data-target="${contentId}"]`);
-            const contentElement = document.getElementById(contentId);
-            
-            if (header && contentElement && state[contentId]) {
-                header.classList.add('collapsed');
-                contentElement.classList.add('collapsed');
+        for (const chapterId in state) {
+            const details = document.getElementById(chapterId);
+            if (details) {
+                details.open = state[chapterId];
             }
         }
     }

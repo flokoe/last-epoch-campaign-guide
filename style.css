@@ -93,6 +93,11 @@ input[type="checkbox"]:checked + .zone-name {
 .zone input[type="checkbox"]:checked ~ * {
     opacity: 0.7;
 }
+.zone.completed {
+    opacity: 0.7;
+    background-color: #2a2a2a;
+    border-left-color: #5a5a5a;
+}
 .tips {
     margin-top: 12px;
     padding-left: 20px;

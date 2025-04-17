@@ -7,6 +7,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const checkboxes = document.querySelectorAll('.zone-checkbox');
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', function() {
+            const zoneId = this.getAttribute('data-zone-id');
+            const zoneElement = document.getElementById(zoneId);
+            
+            if (this.checked) {
+                zoneElement.classList.add('completed');
+            } else {
+                zoneElement.classList.remove('completed');
+            }
+            
             saveCheckboxState();
         });
     });
@@ -42,8 +51,11 @@ function loadCheckboxState() {
         
         for (const zoneId in state) {
             const checkbox = document.querySelector(`.zone-checkbox[data-zone-id="${zoneId}"]`);
+            const zoneElement = document.getElementById(zoneId);
+            
             if (checkbox && state[zoneId]) {
                 checkbox.checked = true;
+                zoneElement.classList.add('completed');
             }
         }
     }

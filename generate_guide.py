@@ -19,7 +19,7 @@ def load_campaign_data(yaml_file: str) -> Dict[str, Any]:
 def generate_html(data: Dict[str, Any]) -> str:
     # Set up Jinja2 environment using the current directory
     env = Environment(loader=FileSystemLoader('.'))
-    template = env.get_template('campaign_guide.html')
+    template = env.get_template('campaign_guide.html.j2')
     
     # Render the template with our data
     return template.render(campaign=data['campaign'])
@@ -49,13 +49,18 @@ def main():
     with open(output_file, 'w') as file:
         file.write(html)
     
-    # Copy static files to public directory
-    static_files = ['style.css', 'script.js']
-    for file in static_files:
-        source_file = os.path.join(base_dir, file)
-        if os.path.isfile(source_file):
-            shutil.copy2(source_file, os.path.join(public_dir, file))
-            print(f"File copied to: {os.path.join(public_dir, file)}")
+    # Copy static directory to public
+    static_dir = os.path.join(base_dir, 'static')
+    public_static_dir = os.path.join(public_dir, 'static')
+    
+    # Remove existing static directory in public if it exists
+    if os.path.exists(public_static_dir):
+        shutil.rmtree(public_static_dir)
+    
+    # Copy the entire static directory
+    if os.path.exists(static_dir):
+        shutil.copytree(static_dir, public_static_dir)
+        print(f"Static files copied to: {public_static_dir}")
     
     print(f"HTML guide generated at: {output_file}")
 

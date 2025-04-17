@@ -55,8 +55,8 @@ def generate_html(data: Dict[str, Any]) -> str:
     
     template = env.get_template('campaign_guide.html.j2')
     
-    # Render the template with our data
-    return template.render(campaign=data['campaign'])
+    # Render the template with our data and pass the os.environ
+    return template.render(campaign=data['campaign'], environ=os.environ)
 
 def main():
     # Get the base directory (project root)

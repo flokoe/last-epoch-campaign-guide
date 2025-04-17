@@ -28,8 +28,41 @@ campaign:
 
     - name: "Chapter 1: The End of Time"
       zones:
-        - name: "The End of Time"
-          description: "The starting area of the game."
+        - name: "The Old Road"
+          description: "Group up enemies including both Phoenixes and use AoE damage to clear."
         
-        - name: "The Ruined Caravan"
-          description: "First combat area with basic enemies."
+        - name: "Burning Forest"
+          description: "Focus only on killing the plant monsters; drag them to the NPC. Aim to reach Level 4 before the first boss. If you got enough health potions, you can tank the boss easiliy."
+        
+        - name: "Keeper's Camp"
+          description: "Buy Movement Speed Boots, Silver Rings, Ruby Amulet. Look for a good two-hander, or bow and quiver."
+        
+        - name: "Fortress Garden"
+          description: "Look for shrine on right. Path top-left. Prioritize killing plants. Aim for Level 5 and remember to specialize skill."
+        
+        - name: "Fortress Walls"
+          description: "One of the toughest early zones, be cautious. Avoid pulling enemies to boss fight and dodge Phoenix."
+        
+        - name: "The Storerooms (Side Quest)"
+          description: "Go left from town exit for a passive point. Kill Forged Soldier, click the object in the corner, exit through bottom, and talk to Heoborean soldier to collect passive point."
+        
+        - name: "Keeper's Vault"
+          description: "Grab shrine (often to the right). Kill Forged Soldier, go through the door, and talk to Keeper Balthas but run past without helping."
+        
+        - name: "Northern Road"
+          description: "Run to the end, place a portal, and leave when flying enemy appears (no need to talk to NPC)."
+        
+        - name: "Keeper's Camp"
+          description: "Check vendor if nearby for the same gear upgrades as before. Talk to Keeper Lena, then go right."
+        
+        - name: "Ultari Highlands"
+          description: "Hidden treasure chest near start, shrine often bottom-right. Cut through the middle to next zone."
+        
+        - name: "The Osprix Warcamp"
+          description: "Go bottom-right to grab the guaranteed strong Pike weapon. Exit at the top."
+        
+        - name: "The Summit"
+          description: "Boss (Armor Shred): Stay close to boss and don't move much as Pike melts him. After killing, TP out immediately - no need for waypoint or dialogue. Don't go right."
+        
+        - name: "Keeper's Camp"
+          description: "Talk to both Keeper Lena and Balthas first to start teleport timer, then check vendor quickly."

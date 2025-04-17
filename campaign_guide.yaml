@@ -11,6 +11,21 @@ campaign:
     Thank you for the great content!
   
   chapters:
+    - name: General Tips
+      zones:
+        - name: Gear
+          description: Prioritize Movement Speed (Silver Rings, Boots) early. Look for Ruby Amulets (Health). Use a good Loot Filter.
+        - name: Shrines
+          description: Always grab shrines. Damage-dealing shrines are very strong early on.
+        - name: Side Quests
+          description: So essential Passive Point and Idol Slot quests as you encounter them for early power, rather than backtracking later.
+        - name: Vendors
+          description: Check vendors in towns for upgrades, especially early game gear.
+        - name: Crafting
+          description: Add Health and relevant Resistances (Void, Physical, Poison, Cold depending on the act) to gear, especially before difficult chapters (4, 5, 8, 9).
+        - name: Portals
+          description: Use Town Portal (T) frequently to save time returning from objectives instead of walking. Right-click waypoints for instant travel.
+
     - name: "Chapter 1: The End of Time"
       zones:
         - name: "The End of Time"

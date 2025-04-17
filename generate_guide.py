@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#   "pyyaml",
+#   "jinja2",
+#   "markdown",
+# ]
+# ///
+
 import yaml
 import os
 import sys

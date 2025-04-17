@@ -55,15 +55,28 @@ h1 {
     margin-top: 10px;
 }
 details[open] .collapse-icon:after {
-    content: "▼";
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 10px solid #bb9b62;
 }
 details:not([open]) .collapse-icon:after {
-    content: "▶";
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 10px solid #bb9b62;
 }
 .collapse-icon {
-    font-size: 18px;
+    display: inline-block;
+    width: 18px;
+    text-align: center;
     margin-right: 10px;
-    color: #bb9b62;
 }
 .zone {
     margin-bottom: 20px;

@@ -13,7 +13,8 @@ import yaml
 import os
 import sys
 import shutil
-from jinja2 import Environment, FileSystemLoader
+import markdown
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 from typing import Dict, Any
 
 def load_campaign_data(yaml_file: str) -> Dict[str, Any]:
@@ -25,9 +26,33 @@ def load_campaign_data(yaml_file: str) -> Dict[str, Any]:
             print(f"Error parsing YAML file: {e}")
             sys.exit(1)
 
+def process_markdown_fields(data: Dict[str, Any]) -> Dict[str, Any]:
+    """Process all description fields as markdown"""
+    # Process campaign description
+    if 'description' in data['campaign']:
+        data['campaign']['description'] = markdown.markdown(data['campaign']['description'])
+    
+    # Process chapter and zone descriptions
+    for chapter in data['campaign']['chapters']:
+        if 'description' in chapter:
+            chapter['description'] = markdown.markdown(chapter['description'])
+        
+        for zone in chapter.get('zones', []):
+            if 'description' in zone:
+                zone['description'] = markdown.markdown(zone['description'])
+    
+    return data
+
 def generate_html(data: Dict[str, Any]) -> str:
     # Set up Jinja2 environment using the current directory
-    env = Environment(loader=FileSystemLoader('.'))
+    env = Environment(
+        loader=FileSystemLoader('.'),
+        autoescape=select_autoescape(['html', 'xml'])
+    )
+    
+    # Process markdown fields
+    data = process_markdown_fields(data)
+    
     template = env.get_template('campaign_guide.html.j2')
     
     # Render the template with our data

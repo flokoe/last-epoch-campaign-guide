@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>{{ campaign.name }}</h1>
-    <p class="description">{{ campaign.description }}</p>
+    <p class="description">{{ campaign.description|safe }}</p>
     
     <div id="campaign-content">
         {% for chapter in campaign.chapters %}
@@ -27,7 +27,7 @@
                         <input type="checkbox" class="zone-checkbox" id="checkbox-{{ zone_id }}" data-zone-id="{{ zone_id }}">
                         <label for="checkbox-{{ zone_id }}" class="zone-name">{{ zone.name }}</label>
                     </div>
-                    <p class="zone-description">{{ zone.description }}</p>
+                    <p class="zone-description">{{ zone.description|safe }}</p>
                     <div class="tips">
                         <span class="tips-title">Tips:</span>
                         <ul>

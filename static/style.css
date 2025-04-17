@@ -25,6 +25,22 @@ h1 {
     margin-bottom: 30px;
     color: #a0a0a0;
 }
+/* Link styles */
+a {
+    color: #d4af7a;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+a:hover {
+    color: #e6c998;
+    text-decoration: underline;
+}
+a:visited {
+    color: #9d7e52;
+}
+a:active {
+    color: #f0d6a7;
+}
 .chapter {
     margin-bottom: 30px;
     background-color: #1e1e1e;

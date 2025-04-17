@@ -15,46 +15,22 @@ campaign:
       zones:
         - name: "The End of Time"
           description: "The starting area of the game."
-          tips:
-            - "Talk to all NPCs to understand the story"
-            - "Don't worry about item drops yet, focus on progressing"
-            - "Pick up a movement skill when available"
         
         - name: "The Ruined Caravan"
           description: "First combat area with basic enemies."
-          tips:
-            - "Practice your combat skills against basic enemies"
-            - "Look for the hidden chest north of the starting point"
-            - "Make sure to visit Heorot before leaving"
     
     - name: "Chapter 2: The Ancient Era"
       zones:
         - name: "Council Chambers"
           description: "An indoor area with several elite enemies."
-          tips:
-            - "Beware of archers on elevated platforms"
-            - "The quest item is in the northern room"
-            - "There's a unique boss that drops valuable loot"
         
         - name: "The Crossroads"
           description: "A large outdoor area with multiple paths."
-          tips:
-            - "The eastern path leads to bonus XP and better loot"
-            - "Defeat the mini-boss for guaranteed rare items"
-            - "Look for a hidden cave entrance near the waterfall"
     
     - name: "Chapter 3: The Divine Era"
       zones:
         - name: "Imperial Era"
           description: "A city area with merchants and quests."
-          tips:
-            - "Stock up on potions from the merchant"
-            - "The side quest 'Lost Heirloom' gives an excellent unique item"
-            - "Don't miss the waypoint at the center of town"
         
         - name: "The Grand Mausoleum"
-          description: "A large dungeon with undead enemies."
-          tips:
-            - "Bring cold damage if possible - enemies are weak to it"
-            - "The boss has a shield phase - wait it out"
-            - "Check corners for secret passages" 
+          description: "A large dungeon with undead enemies." 

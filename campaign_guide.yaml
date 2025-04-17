@@ -33,19 +33,3 @@ campaign:
         
         - name: "The Ruined Caravan"
           description: "First combat area with basic enemies."
-    
-    - name: "Chapter 2: The Ancient Era"
-      zones:
-        - name: "Council Chambers"
-          description: "An indoor area with several elite enemies."
-        
-        - name: "The Crossroads"
-          description: "A large outdoor area with multiple paths."
-    
-    - name: "Chapter 3: The Divine Era"
-      zones:
-        - name: "Imperial Era"
-          description: "A city area with merchants and quests."
-        
-        - name: "The Grand Mausoleum"
-          description: "A large dungeon with undead enemies." 

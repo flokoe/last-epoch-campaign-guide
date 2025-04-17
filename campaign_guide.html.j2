@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>{{ campaign.name }}</h1>
-    <p class="description">{{ campaign.description|safe }}</p>
+    <div class="description">{{ campaign.description|safe }}</div>
     
     <div id="campaign-content">
         {% for chapter in campaign.chapters %}
